@@ -37,13 +37,14 @@ mongoose
         console.log(error);
     })
 
+app.use("/api", router)
+
 app.use(express.static('client/dist'))
 
+// Add React Front End Routing
 app.get("*", (req, res)=>{
     res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
 })
-
-app.use("/api", router)
 
 app.get("*", (req, res)=>{
     res.status(404).json({
